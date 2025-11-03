@@ -11,7 +11,7 @@ const getGoogleMapsUrl = (place: Place): string => {
 };
 
 const getWazeUrl = (place: Place): string => {
-  return `https://waze.com/ul?ll=${place.latitude},${place.longitude}&navigate=yes&zoom=15`;
+  return `https://www.waze.com/ul?navigate=yes&ll=${place.latitude},${place.longitude}&q=${encodeURIComponent(place.name)}`;
 };
 
 export default function NavigationModal({
