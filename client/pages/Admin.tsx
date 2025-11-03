@@ -1,38 +1,41 @@
-import { useState, useEffect } from 'react';
-import { Place } from '@/types';
-import { dummyPlaces } from '@/data/places';
-import { Trash2, Plus, Edit2 } from 'lucide-react';
-import Header from '@/components/Header';
+import { useState, useEffect } from "react";
+import { Place } from "@/types";
+import { dummyPlaces } from "@/data/places";
+import { Trash2, Plus, Edit2 } from "lucide-react";
+import Header from "@/components/Header";
 
 const categoryLabels = {
-  restaurant: '🍽️ Restaurant',
-  coffee: '☕ Coffee Shop',
-  club: '🎵 Club',
+  restaurant: "🍽️ Restaurant",
+  coffee: "☕ Coffee Shop",
+  club: "🎵 Club",
 };
 
 export default function Admin() {
   const [places, setPlaces] = useState<Place[]>(dummyPlaces);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState<Partial<Place>>({
-    name: '',
-    description: '',
-    category: 'restaurant',
-    address: '',
+    name: "",
+    description: "",
+    category: "restaurant",
+    address: "",
     latitude: 0,
     longitude: 0,
     rating: 5,
-    image: '',
+    image: "",
   });
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === 'rating' || name === 'latitude' || name === 'longitude'
-        ? parseFloat(value)
-        : value,
+      [name]:
+        name === "rating" || name === "latitude" || name === "longitude"
+          ? parseFloat(value)
+          : value,
     }));
   };
 
@@ -42,14 +45,14 @@ export default function Admin() {
     if (editingId) {
       setPlaces(
         places.map((p) =>
-          p.id === editingId ? { ...p, ...formData as Place } : p
-        )
+          p.id === editingId ? { ...p, ...(formData as Place) } : p,
+        ),
       );
       setEditingId(null);
     } else {
       const newPlace: Place = {
         id: Date.now().toString(),
-        ...formData as Place,
+        ...(formData as Place),
       };
       setPlaces([...places, newPlace]);
     }
@@ -60,25 +63,25 @@ export default function Admin() {
   const handleEdit = (place: Place) => {
     setEditingId(place.id);
     setFormData(place);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleDelete = (id: string) => {
-    if (confirm('Are you sure you want to delete this place?')) {
+    if (confirm("Are you sure you want to delete this place?")) {
       setPlaces(places.filter((p) => p.id !== id));
     }
   };
 
   const resetForm = () => {
     setFormData({
-      name: '',
-      description: '',
-      category: 'restaurant',
-      address: '',
+      name: "",
+      description: "",
+      category: "restaurant",
+      address: "",
       latitude: 0,
       longitude: 0,
       rating: 5,
-      image: '',
+      image: "",
     });
   };
 
@@ -101,7 +104,7 @@ export default function Admin() {
             <div className="lg:col-span-1">
               <div className="bg-white rounded-lg shadow-md p-6 sticky top-20">
                 <h2 className="text-xl font-bold text-gray-900 mb-4">
-                  {editingId ? 'Edit Place' : 'Add New Place'}
+                  {editingId ? "Edit Place" : "Add New Place"}
                 </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -112,7 +115,7 @@ export default function Admin() {
                     <input
                       type="text"
                       name="name"
-                      value={formData.name || ''}
+                      value={formData.name || ""}
                       onChange={handleInputChange}
                       placeholder="Place name"
                       required
@@ -126,7 +129,7 @@ export default function Admin() {
                     </label>
                     <textarea
                       name="description"
-                      value={formData.description || ''}
+                      value={formData.description || ""}
                       onChange={handleInputChange}
                       placeholder="Brief description"
                       required
@@ -141,7 +144,7 @@ export default function Admin() {
                     </label>
                     <select
                       name="category"
-                      value={formData.category || 'restaurant'}
+                      value={formData.category || "restaurant"}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                     >
@@ -158,7 +161,7 @@ export default function Admin() {
                     <input
                       type="text"
                       name="address"
-                      value={formData.address || ''}
+                      value={formData.address || ""}
                       onChange={handleInputChange}
                       placeholder="Street address"
                       required
@@ -174,7 +177,7 @@ export default function Admin() {
                       <input
                         type="number"
                         name="latitude"
-                        value={formData.latitude || ''}
+                        value={formData.latitude || ""}
                         onChange={handleInputChange}
                         placeholder="0.0"
                         step="0.0001"
@@ -189,7 +192,7 @@ export default function Admin() {
                       <input
                         type="number"
                         name="longitude"
-                        value={formData.longitude || ''}
+                        value={formData.longitude || ""}
                         onChange={handleInputChange}
                         placeholder="0.0"
                         step="0.0001"
@@ -206,7 +209,7 @@ export default function Admin() {
                     <input
                       type="number"
                       name="rating"
-                      value={formData.rating || ''}
+                      value={formData.rating || ""}
                       onChange={handleInputChange}
                       placeholder="5"
                       min="0"
@@ -224,7 +227,7 @@ export default function Admin() {
                     <input
                       type="url"
                       name="image"
-                      value={formData.image || ''}
+                      value={formData.image || ""}
                       onChange={handleInputChange}
                       placeholder="https://example.com/image.jpg"
                       required
@@ -237,7 +240,7 @@ export default function Admin() {
                       type="submit"
                       className="flex-1 py-2 px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg transition duration-300"
                     >
-                      {editingId ? 'Update Place' : 'Add Place'}
+                      {editingId ? "Update Place" : "Add Place"}
                     </button>
                     {editingId && (
                       <button

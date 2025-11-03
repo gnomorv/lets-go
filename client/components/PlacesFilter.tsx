@@ -1,4 +1,4 @@
-import { Place } from '@/types';
+import { Place } from "@/types";
 
 interface PlacesFilterProps {
   selectedCategories: string[];
@@ -9,9 +9,9 @@ interface PlacesFilterProps {
 }
 
 const categories = [
-  { id: 'restaurant', label: '🍽️ Restaurants', color: 'red' },
-  { id: 'coffee', label: '☕ Coffee Shops', color: 'amber' },
-  { id: 'club', label: '🎵 Clubs', color: 'purple' },
+  { id: "restaurant", label: "🍽️ Restaurants", color: "red" },
+  { id: "coffee", label: "☕ Coffee Shops", color: "amber" },
+  { id: "club", label: "🎵 Clubs", color: "purple" },
 ];
 
 export default function PlacesFilter({
@@ -68,8 +68,9 @@ export default function PlacesFilter({
       </div>
 
       <div className="mt-4 text-sm text-gray-600">
-        Showing <span className="font-semibold text-gray-900">{placeCount}</span>{' '}
-        {placeCount === 1 ? 'place' : 'places'}
+        Showing{" "}
+        <span className="font-semibold text-gray-900">{placeCount}</span>{" "}
+        {placeCount === 1 ? "place" : "places"}
       </div>
     </div>
   );

@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Place, UserLocation } from '@/types';
-import { dummyPlaces } from '@/data/places';
+import { useState, useEffect } from "react";
+import { Place, UserLocation } from "@/types";
+import { dummyPlaces } from "@/data/places";
 import {
   getUserLocation,
   getNearbyPlaces,
   calculateDistance,
-} from '@/utils/geolocation';
-import Header from '@/components/Header';
-import PlacesGrid from '@/components/PlacesGrid';
-import PlacesFilter from '@/components/PlacesFilter';
-import { MapPin, AlertCircle, Loader } from 'lucide-react';
+} from "@/utils/geolocation";
+import Header from "@/components/Header";
+import PlacesGrid from "@/components/PlacesGrid";
+import PlacesFilter from "@/components/PlacesFilter";
+import { MapPin, AlertCircle, Loader } from "lucide-react";
 
 export default function Index() {
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
@@ -19,11 +19,11 @@ export default function Index() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([
-    'restaurant',
-    'coffee',
-    'club',
+    "restaurant",
+    "coffee",
+    "club",
   ]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -42,14 +42,14 @@ export default function Index() {
             location.latitude,
             location.longitude,
             place.latitude,
-            place.longitude
+            place.longitude,
           );
         });
         setDistances(distanceMap);
       } catch (err) {
-        console.error('Location error:', err);
+        console.error("Location error:", err);
         setError(
-          'Could not access your location. Please enable location permissions.'
+          "Could not access your location. Please enable location permissions.",
         );
         setNearbyPlaces(dummyPlaces);
         const distanceMap: Record<string, number> = {};
@@ -70,16 +70,17 @@ export default function Index() {
 
     if (selectedCategories.length > 0) {
       filtered = filtered.filter((place) =>
-        selectedCategories.includes(place.category)
+        selectedCategories.includes(place.category),
       );
     }
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      filtered = filtered.filter((place) =>
-        place.name.toLowerCase().includes(query) ||
-        place.description.toLowerCase().includes(query) ||
-        place.address.toLowerCase().includes(query)
+      filtered = filtered.filter(
+        (place) =>
+          place.name.toLowerCase().includes(query) ||
+          place.description.toLowerCase().includes(query) ||
+          place.address.toLowerCase().includes(query),
       );
     }
 
@@ -131,8 +132,9 @@ export default function Index() {
             <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-lg flex items-center gap-3">
               <MapPin className="w-5 h-5 text-blue-600" />
               <p className="text-blue-900">
-                <span className="font-semibold">Your Location:</span>{' '}
-                {userLocation.latitude.toFixed(4)}, {userLocation.longitude.toFixed(4)}
+                <span className="font-semibold">Your Location:</span>{" "}
+                {userLocation.latitude.toFixed(4)},{" "}
+                {userLocation.longitude.toFixed(4)}
               </p>
             </div>
           )}

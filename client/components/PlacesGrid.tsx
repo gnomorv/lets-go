@@ -1,5 +1,5 @@
-import { Place } from '@/types';
-import { Star, MapPin } from 'lucide-react';
+import { Place } from "@/types";
+import { Star, MapPin } from "lucide-react";
 
 interface PlacesGridProps {
   places: Place[];
@@ -7,18 +7,21 @@ interface PlacesGridProps {
 }
 
 const categoryColors = {
-  restaurant: { bg: 'bg-red-50', badge: 'bg-red-100 text-red-700' },
-  coffee: { bg: 'bg-amber-50', badge: 'bg-amber-100 text-amber-700' },
-  club: { bg: 'bg-purple-50', badge: 'bg-purple-100 text-purple-700' },
+  restaurant: { bg: "bg-red-50", badge: "bg-red-100 text-red-700" },
+  coffee: { bg: "bg-amber-50", badge: "bg-amber-100 text-amber-700" },
+  club: { bg: "bg-purple-50", badge: "bg-purple-100 text-purple-700" },
 };
 
 const categoryLabels = {
-  restaurant: '🍽️ Restaurant',
-  coffee: '☕ Coffee Shop',
-  club: '🎵 Club',
+  restaurant: "🍽️ Restaurant",
+  coffee: "☕ Coffee Shop",
+  club: "🎵 Club",
 };
 
-export default function PlacesGrid({ places, distances = {} }: PlacesGridProps) {
+export default function PlacesGrid({
+  places,
+  distances = {},
+}: PlacesGridProps) {
   if (places.length === 0) {
     return (
       <div className="text-center py-12">
@@ -46,7 +49,9 @@ export default function PlacesGrid({ places, distances = {} }: PlacesGridProps) 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
               <div className="absolute top-3 right-3">
-                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${colors.badge}`}>
+                <span
+                  className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${colors.badge}`}
+                >
                   {categoryLabels[place.category]}
                 </span>
               </div>
@@ -64,8 +69,8 @@ export default function PlacesGrid({ places, distances = {} }: PlacesGridProps) 
                       key={i}
                       className={`w-4 h-4 ${
                         i < Math.floor(place.rating)
-                          ? 'fill-yellow-400 text-yellow-400'
-                          : 'text-gray-300'
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-gray-300"
                       }`}
                     />
                   ))}

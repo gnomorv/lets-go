@@ -1,9 +1,9 @@
-import { Place, UserLocation } from '@/types';
+import { Place, UserLocation } from "@/types";
 
 export const getUserLocation = (): Promise<UserLocation> => {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
-      reject(new Error('Geolocation is not supported by this browser'));
+      reject(new Error("Geolocation is not supported by this browser"));
       return;
     }
 
@@ -17,7 +17,7 @@ export const getUserLocation = (): Promise<UserLocation> => {
       },
       (error) => {
         reject(error);
-      }
+      },
     );
   });
 };
@@ -26,7 +26,7 @@ export const calculateDistance = (
   lat1: number,
   lon1: number,
   lat2: number,
-  lon2: number
+  lon2: number,
 ): number => {
   const R = 3959; // Earth's radius in miles
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
@@ -44,7 +44,7 @@ export const calculateDistance = (
 export const getNearbyPlaces = (
   places: Place[],
   userLocation: UserLocation,
-  radiusMiles: number = 5
+  radiusMiles: number = 5,
 ): Place[] => {
   return places
     .map((place) => ({
@@ -53,7 +53,7 @@ export const getNearbyPlaces = (
         userLocation.latitude,
         userLocation.longitude,
         place.latitude,
-        place.longitude
+        place.longitude,
       ),
     }))
     .filter(({ distance }) => distance <= radiusMiles)
