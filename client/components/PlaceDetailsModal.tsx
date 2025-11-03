@@ -1,5 +1,5 @@
-import { Place } from '@/types';
-import { X, MapPin, Clock, Users, DollarSign } from 'lucide-react';
+import { Place } from "@/types";
+import { X, MapPin, Clock, Users, DollarSign } from "lucide-react";
 
 interface PlaceDetailsModalProps {
   place: Place | null;
@@ -53,7 +53,9 @@ export default function PlaceDetailsModal({
                 <DollarSign className="w-5 h-5 text-green-600" />
                 <h4 className="font-semibold text-gray-900">Rating</h4>
               </div>
-              <p className="text-sm text-gray-600">⭐ {place.rating.toFixed(1)}</p>
+              <p className="text-sm text-gray-600">
+                ⭐ {place.rating.toFixed(1)}
+              </p>
             </div>
 
             <div className="bg-gray-50 p-4 rounded-lg">
@@ -78,7 +80,7 @@ export default function PlaceDetailsModal({
               Amenities
             </h3>
             <div className="flex flex-wrap gap-2">
-              {place.category === 'restaurant' && (
+              {place.category === "restaurant" && (
                 <>
                   <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
                     Dine-in
@@ -94,7 +96,7 @@ export default function PlaceDetailsModal({
                   </span>
                 </>
               )}
-              {place.category === 'coffee' && (
+              {place.category === "coffee" && (
                 <>
                   <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium">
                     WiFi
@@ -110,7 +112,7 @@ export default function PlaceDetailsModal({
                   </span>
                 </>
               )}
-              {place.category === 'club' && (
+              {place.category === "club" && (
                 <>
                   <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
                     Live DJ

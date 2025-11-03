@@ -1,5 +1,5 @@
-import { Place } from '@/types';
-import { X, MapIcon, Navigation } from 'lucide-react';
+import { Place } from "@/types";
+import { X, MapIcon, Navigation } from "lucide-react";
 
 interface NavigationModalProps {
   place: Place | null;
@@ -21,12 +21,12 @@ export default function NavigationModal({
   if (!place) return null;
 
   const handleGoogleMaps = () => {
-    window.open(getGoogleMapsUrl(place), '_blank');
+    window.open(getGoogleMapsUrl(place), "_blank");
     onClose();
   };
 
   const handleWaze = () => {
-    window.open(getWazeUrl(place), '_blank');
+    window.open(getWazeUrl(place), "_blank");
     onClose();
   };
 
@@ -34,7 +34,9 @@ export default function NavigationModal({
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg max-w-sm w-full">
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">Navigate to {place.name}</h2>
+          <h2 className="text-xl font-bold text-gray-900">
+            Navigate to {place.name}
+          </h2>
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-lg transition"
@@ -53,7 +55,9 @@ export default function NavigationModal({
             </div>
             <div className="text-left">
               <h3 className="font-semibold text-gray-900">Google Maps</h3>
-              <p className="text-sm text-gray-600">Get directions with Google</p>
+              <p className="text-sm text-gray-600">
+                Get directions with Google
+              </p>
             </div>
           </button>
 
