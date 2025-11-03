@@ -3,7 +3,7 @@ import { Place } from "@/types";
 export const dummyPlaces: Place[] = [
   {
     id: "1",
-    name: "cacacacafé Naciente",
+    name: "LLLLLLLLALALALALLAafé Naciente",
     description: "Cafetería artesanal en el centro de San José con café de especialidad tostado localmente.",
     category: "coffee",
     latitude: 9.9325,
